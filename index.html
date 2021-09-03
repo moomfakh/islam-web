@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="style/main.css">
+<link rel="stylesheet" href="style/dark-mode.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://kit.fontawesome.com/fecdd9adcd.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+const currentTheme = localStorage.getItem("theme");
+if (currentTheme == "dark") {
+  document.body.classList.add("dark-theme");
+  }
+</script>
+<div onclick="openNav()" tabindex=0 style="display:inline" >
+<div class="ham"></div>
+<div class="ham"></div>
+<div class="ham"></div>
+</div>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" tabindex=0>&times;</a>
+ <a href="https://islam360.github.io/settings.html">Settings</a>
+</div>
+<h1>Islam360 Sample</h1>
+<div class="tab">
+   <button class="tablinks" onclick="openTab(event, 'quran')"><i class="fas fa-quran"></i><br>Quran</button>
+  <button class="tablinks" onclick="openTab(event, 'hadith')"><i class="fas fa-star-and-crescent"></i><br>Hadith</button>
+   <button class="tablinks" onclick="openTab(event, 'home')" id="defaultOpen" ><i class="fas fa-home"></i> <br>Home </button>
+    <button class="tablinks" onclick="openTab(event, 'worship')" ><i class="fas fa-pray"></i> <br>Worship </button>
+  <button class="tablinks" onclick="openTab(event, 'others')"><i class="fas fa-ellipsis-h"></i><br>Others</button>
+   </div>
+<div class="tabcontent" id="home">
+</div>
+<div class="tabcontent" id="quran">
+<div class="column">
+<a href="https://islam360.github.io/quran/al-quran.html"><div class="card">Al-Quran</div></a>
+  </div>
+</div>
+<div class="tabcontent" id="hadith">
+Hadith 
+</div>
+<div class="tabcontent" id="worship">
+<div class="column">
+<a href="https://islam360.github.io/hajj"><div class="card">Hajj</div></a>
+  </div>
+</div>
+<div class="tabcontent" id="others">
+Others
+</div>
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+<script>
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+</body>
+</html>
