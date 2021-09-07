@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+<head><style>
+h2 {
+font-size : 60px;
+text-align : center;
+border : 5px solid gold;
+background : linear-gradient( 90deg , chartreuse 45%  , tomato 45% );
+}
+.correct {
+color : green;
+}
+.wrong {
+color : red;
+}
+.points {
+color : blue;
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right; 
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.shareing {
+ background-color : lightgray;
+ display : block
+}
+.what {
+position : relative;
+bottom: 10px;
+left: 10px;
+color : black;
+font-size : 20px;
+}
+.whatsapp {
+text-decoration : none;
+}
+#myBtn {
+background : none;
+border: none;
+}
+body {
+  --text-color: #222;
+  --bkg-color: #fff;
+  --side-nav: black;
+  --link: green;
+  --link-visit: red ;
+--text-color: black ;
+  }
+body.dark-theme {
+  --text-color: white;
+  --bkg-color: #121212;
+  --side-nav: white;
+  --link: chartreuse;
+  --link-visit: red ;
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: var(--bkg-color);
+}
+
+body {
+  color: var(--text-color);
+}
+i {
+color: var(--text-color);
+}
+</style>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<script>
+const currentTheme = localStorage.getItem("theme");
+if (currentTheme == "dark") {
+  document.body.classList.add("dark-theme");
+  }
+</script>
+<h2 style="color:black" >Your&nbspScore</h2>
+<h1 class="correct">Correct Answers : <span id="correct"></span></h1>
+<h1 class="wrong">Wrong Answers : <span id="wrong"></span></h1>
+<h1 class="points">Points : <span id="points"></span></h1>
+<h1 id="comment" ></h1>
+<button id="myBtn" onclick="mod()"><i class="material-icons">share</i></button>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Share via</h3>
+     
+    <a class="whatsapp" target="_blank"><div class="shareing"><img src="/whatsapp.png" height="40" width="40" ><span class="what">WhatsApp</span></div></a>
+<a class="whatsapp" target="_blank"><div class="shareing"><img src="/SMS.png" height="40" width="40" ><span class="what">SMS</span></div></a>
+<a class="whatsapp" target="_blank"><div class="shareing"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Android_Email_8.1_Icon.png" height="40" width="40" ><span class="what">Email</span></div></a>
+<a class="whatsapp" onclick="xopy()"><div class="shareing"><img height="40" width="40" bgcolor="black" ><span class="what">Copy to Clipboard</span></div></a>
+
+
+
+   
+  </div>
+
+</div>
+<audio hidden id="auwin">
+<source src="https://upload.wikimedia.org/wikipedia/commons/9/93/Start.wav">
+</audio>
+<div id='piechart'>loading......</div>
+<script>
+document.getElementById("correct").innerHTML = sessionStorage.getItem("correct");
+document.getElementById("wrong").innerHTML = sessionStorage.getItem("wrong");
+document.getElementById("points").innerHTML = sessionStorage.getItem("correct") * 5;
+</script>
+<script>
+  var points = sessionStorage.getItem("points");
+ var scp = document.getElementById("correct");
+var scp = document.getElementById("wrong");
+var high = document.getElementById("correct").innerHTML ;
+var byeg = document.getElementById("wrong").innerHTML  ;
+var hi = parseInt(high);
+var bye = parseInt(byeg);
+var h = document.getElementById("comment") ;
+if(high.innerHTML == "10" ) {
+h.innerHTML = "🏆 Perfect 🏆";
+}else if(points == 0){
+h.innerHTML = "🙂";
+}else if(points >= 40){
+h.innerHTML = "🏅 Excellent 🏅";
+}else if(points >= 30){
+h.innerHTML = "👏 Very Good 👏";
+}else if(points >= 15){
+h.innerHTML = "👍 Good 👍";
+}else if(points > -10){
+h.innerHTML = "🙂 Fair 🙂";
+}else if(points >= -30){
+h.innerHTML = "☹️ You can do better ☹️";
+} ;
+var ampersand;
+if (points > 0) {
+  document.getElementById("auwin").play();
+ } else if(points < 0) {
+  navigator.vibrate(500);
+ } ;
+ google.charts.load('current', {
+  'packages': ['corechart']
+ });
+ google.charts.setOnLoadCallback(
+  drawChart);
+ // Draw the chart and set the chart values
+ function drawChart() {
+  var data = google.visualization
+   .arrayToDataTable([
+    ['status', 'percentage'],
+    ['Correct Answers', hi],
+    ['Wrong Answers', bye]
+   ]);
+  // Optional; add a title and set the width and height of the chart
+  var options = {
+   'title': 'Your Score',
+   'width': 400,
+   'height': 300,
+   is3D: true,
+   slices: {
+    0: {
+     color: 'green'
+    },
+    1: {
+     color: 'red'
+    }
+   }
+  };
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google
+   .visualization.PieChart(document
+    .getElementById('piechart'));
+  chart.draw(data, options);
+ } 
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks on <span> (x), close the modal;
+span.onclick = function() {
+  modal.style.display = "none";
+}
+function mod() {
+if (navigator.share) {
+   navigator.share({
+    text: sessionStorage.getItem("share")
+    })
+  } else {
+   modal.style.display = "block";
+  }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+<script>
+var share = sessionStorage.getItem("share");
+document.getElementsByClassName("whatsapp")[0].href = "https://wa.me?text="+ share ;
+document.getElementsByClassName("whatsapp")[1].href = "sms:?body="+ share ;
+document.getElementsByClassName("whatsapp")[2].href = "mailto:?subject=See my Score&body="+ share ;
+function xopy() {
+  const el = document.createElement('textarea');
+  el.value = share;
+  el.setAttribute('readonly', '');
+  el.style.position = 'absolute';
+  el.style.left = '-9999px';
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el)
+alert("Copied")
+}
+</script>
+</body>
+</html>

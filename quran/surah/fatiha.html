@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+.column {
+  float: left ;
+  width: 100%;
+  padding: 0 5px;
+  margin-bottom: 20px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px; margin-bottom: 20px; text-align: right}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0 , 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 10px;
+  background-color: #f1f1f1;
+ color: black ;
+ text-decoration : none ;
+border-radius: 5px ;
+text-align: right ;
+}
+@media screen and (min-width: 600px) {
+.ayat {
+font-size: 40px ;
+ }
+}
+body {
+font-family: Helvetica ;
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div class="row">
+<div class="column"><div class="card"><div class="ayat"> بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div><div class="translation"></div></div></div>
+<div class="column"><div class="card"><div class="ayat">ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ</div><div class="translation"></div></div>
+</div>
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <button onclick="translation(junagarhi)">Junagarhi</button>
+   <button onclick="translation(sahih)">Sahih Int.</button>
+   <button onclick="translation(moudoodiUrdu)">Abul Aala Moudoodi</button> 
+  </div>
+
+</div>
+
+<script> 
+var sahih = [ "In the name of Allah, the Entirely Merciful, the Especially Merciful." , " [All] praise is [due] to Allah, Lord of the worlds -"] ;
+var junagarhi = [ "شروع کرتا ہوں اللہ تعالیٰ کے نام سے جو بڑا مہربان نہایت رحم واﻻ ہے" , "سب تعریف اللہ تعالیٰ کے لئے ہے جو تمام جہانوں کا پالنے واﻻ ہے"] ;
+var moudoodiUrdu = ["الله کے نام سے جو بے انتہا مہربان اور رحم فرمانے والا ہے " , " تعریف اللہ ہی کے لیے ہے 2 جو تمام کائنات کا رب 3 ہے " ] ;
+function translation(person) {
+var i;
+for (i = 0; i < person.length; i++) {
+  document.getElementsByClassName("translation")[i].innerHTML = person[i] ;
+ }
+}
+</script>
+<script>
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+</body>
+</html>

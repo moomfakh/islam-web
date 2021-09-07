@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+div.gallery img {
+  width: 100%;
+  height: auto;
+ border: 1px solid #ccc;
+}
+div.gallery img:hover {
+border: 1px solid #777;
+}
+* {
+  box-sizing: border-box;
+}
+
+.responsive {
+  
+  padding: 0 6px;
+  float: left;
+  width: 49.99999%;
+  margin: -20px 0;
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: -20px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+    margin: -20px 0;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.download {
+position: relative;
+bottom: 55px;
+left: 10px;
+margin-bottom: -10px ;
+}
+.download-icon {
+ height:50px!important ;
+ width:50px!important ;
+ display:inline ; 
+ border: 2px solid black!important ; 
+ border-radius: 40px ;
+ background: rgba(250 , 250 , 250 , 0.8);
+ margin-bottom: -10px!important ;
+}
+#myInput {
+  background-image: url('https://w3schools.com/css/searchicon.png'); /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+</style>
+</head>
+<body>
+<h1>Flashes</h1>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+<div class="responsive">
+  <div class="gallery">
+     <img loading="lazy" src="../assets/flashes/30-50.jpg" alt="وقتی بایاس في هذا القران من كل ما اور حقیقت یہ ہے کہ ہم نے اس قرآن میں لوگوں کو سمجھانے کی خاطر ہر تم کی باتیں بیان کی |
+
+القرآن، 30:58 ] " width="600" height="400" class="image">
+<a class="download" href="../assets/flashes/30-57.jpg" download><img src="../assets/icons/download.svg" class="download-icon"></a>
+</div>
+</div>
+<div class="responsive">
+  <div class="gallery">
+     <img loading="lazy" src="../assets/flashes/30-57.jpg" alt="فومپين نقع البنين ظلوا معهم چنانچه جن لوگوں نے علم کی راه اپنائی تھی اس دن ان کی معذرت انہیں کوئی فائدہ نہیں پہنچائے
+
+القرآن، 30:57 ]" width="600" height="400" class="image">
+<a class="download" href="../assets/flashes/30-57.jpg" download><img src="../assets/icons/download.svg" class="download-icon"> </a>
+</div>
+</div>
+<div class="responsive">
+  <div class="gallery">
+     <img loading="lazy" src="../assets/flashes/30-60.jpg" alt="و لايستخقنك الذين لا يوقنون اور ایسا ہر گز نہ ہونا چاہیے کہ جو لوگ یقین نہیں کرتے ان کی وجہ سے تم ڈھیلے پڑ جاؤ"
+
+القرآن، 30:60 ]" width="600" height="400" class="image">
+<a class="download" href="../assets/flashes/30-60.jpg" download><img src="../assets/icons/download.svg" class="download-icon"> </a>
+</div>
+</div>
+<div class="clearfix"></div>
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, image, text, i, txtValue;
+  input = document.getElementById('myInput');
+  filter = input.value.toUpperCase();
+  image = document.getElementsByClassName('image');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < image.length; i++) {
+    text = image[i].alt;
+    if (text.toUpperCase().indexOf(filter) > -1) {
+      document.getElementsByClassName("responsive")[i].style.display = "";
+    } else {
+      document.getElementsByClassName("responsive")[i].style.display = "none";
+    }
+  }
+}
+</script>
+</body>
+</html>
